@@ -1,0 +1,17 @@
+html {
+  background-color: #FCECC9;
+  color: #272B34; }
+
+a {
+  color: #C85350;
+  text-decoration: none; }
+
+body {
+  margin: 0; }
+
+header {
+  background-color: #31263E; }
+  header a {
+    color: #FCECC9; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,25 @@
+$main-color: #C85350;
+$secondary-color: #31263E;
+$text-color: #272B34;
+$background-color: #FCECC9;
+
+html{
+    background-color: $background-color;
+    color: $text-color;
+}
+
+a{
+    color: $main-color;
+    text-decoration: none;
+}
+
+body{
+    margin: 0;
+}
+
+header{
+    background-color: $secondary-color;
+    a{
+        color: $background-color;
+    }
+}
