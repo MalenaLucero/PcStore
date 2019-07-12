@@ -1,0 +1,69 @@
+$blue: #006585;
+$black: #1a282f;
+$white: #ffffff;
+$purple: #c70082; //no se si cuenta como purple, pero bueno, deal with it
+$pink: #ea90f2;
+$lilac: #9094f2;
+$aqua: #00b5c7;
+$grey: #c4c4c4;
+$font: "Raleway", sans-serif;
+$shadow: 3px 3px 6px
+  rgba( 
+    $color: #000000,
+    $alpha: 0.3
+  ); 
+  
+@mixin relative($float) {
+  position: relative;
+  float: $float;
+  width: 100%;
+}
+ 
+@mixin card {
+  box-sizing: border-box;
+  text-align: center;
+  margin: 20px; 
+  padding: 30px 50px;
+  border-radius: 5px;
+  flex: 1;
+  box-shadow: $shadow;
+}
+
+@mixin button-primary {
+  background-color: $blue;
+  border: 1px solid $blue;
+  border-radius: 3px;
+  color: $white;
+  padding: 10px 28px;
+  font-family: $font;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  &:hover {
+    background-color: $white;
+    color: $blue;
+    transition: 0.5s;  
+  }
+}
+
+@mixin button-secondary {
+  background-color: $white;
+  border: 1px solid $blue;
+  color: $blue;
+  border-radius: 3px;
+  padding: 10px 28px;
+  font-family: $font;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  &:hover {
+    background-color: $blue;
+    color: $white;
+    transition: 0.5s;
+  } 
+}
+
+// @media 
+// sacar el margen o poner solo margin left
