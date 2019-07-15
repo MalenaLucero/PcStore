@@ -41,6 +41,10 @@ var store = {
 
 let componentsArray = store.prices.map(e=>e.component)
 
+const onloadSales = () =>{
+    createSoldComputersTable('soldComputersTable')
+}
+
 const onloadComponents = () =>{
     let quantityPerComponent = componentsArray.map(component => quantitySoldPerComponent(component))
     createTable('componentsTable', componentsArray, quantityPerComponent)
@@ -85,4 +89,44 @@ const createTable = (containerId, firstColumn, secondColumn) =>{
             container.appendChild(row)
         }
     })
+}
+
+//create a table with all the information from soldComputers
+const createSoldComputersTable = containerId => {
+    let container = document.getElementById(containerId)
+    container.innerHTML = ''
+    store.soldComputers.forEach(computer => {
+        let row = document.createElement('tr')
+        Object.keys(computer).forEach( key => {
+            let slot = document.createElement('td')
+            switch (key){
+                case 'date':
+                    slot.innerText = `${computer[key].getDate()}/${computer[key].getMonth() + 1}/${computer[key].getFullYear()}`
+                    break;
+                case 'components':
+                    let ul = document.createElement('ul')
+                    computer[key].forEach(component => {
+                        let li = document.createElement('li')
+                        li.innerText = component
+                        ul.appendChild(li)
+                    })
+                    slot.appendChild(ul)
+                    break;
+                default:
+                    slot.innerText = computer[key]
+                    break;
+            }
+        row.appendChild(slot)
+      })
+      console.log(computer['components'])
+      //adds a column that is not part of the original array
+      newTableColumn(row, `$${computerPrice(computer['components'])}`)
+      container.appendChild(row)
+    })
+}
+
+const newTableColumn = (container, text) => {
+    let slot = document.createElement('td')
+    slot.innerText = text
+    container.appendChild(slot)
 }
