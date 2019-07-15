@@ -62,7 +62,7 @@ const onloadFunctionSales = () =>{
 }
 
 //Onload de "componentes"
-const onloadFunctionComponents = () =>{ 
+const onloadComponents = () =>{ 
   newSale()
   bestSellingComponent("componentsDataContainer")
   let components = shop.prices.map(e=>{return e.component})
