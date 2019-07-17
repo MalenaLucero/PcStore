@@ -56,10 +56,13 @@ const onloadComponents = () =>{
 }
 
 const onloadClerks = () =>{
+    let salesPerClerk = store.clerks.map(clerk =>{
+        return `$${totalSalesPerClerk(clerk)}`
+    })
+    createTable('salesPerClerkTable', store.clerks, salesPerClerk)
     let clerkOfMonth = monthsInNumbers.map(month=>{
         return bestClerkOfMonth(month, 2019)
     })
-    console.log(clerkOfMonth)
     createTable('clerkOfMonthTable', monthsInCapitalLetters, clerkOfMonth)
 }
 
@@ -156,8 +159,15 @@ const bestClerkOfMonth = (month, year) =>{
         })
         return counter
     })
-    //it only returns if there were sales in the month. Otherwise, the value is undefined
+    //it only returns a string if there were sales in the month. Otherwise, the value is undefined
     if(salesPerMonth.length){
         return bestClerk = store.clerks[salesPerClerk.indexOf(Math.max(...salesPerClerk))]
     }
+}
+
+const totalSalesPerClerk = clerk =>{
+    let sales = store.soldComputers.filter(e => {
+        if(e.clerksName === clerk) return e
+    })
+    return total = sales.map(e=>computerPrice(e.components)).reduce((a,b)=>a+b)
 }
