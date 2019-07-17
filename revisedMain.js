@@ -56,14 +56,17 @@ const onloadComponents = () =>{
 }
 
 const onloadClerks = () =>{
-    let salesPerClerk = store.clerks.map(clerk =>{
-        return `$${totalSalesPerClerk(clerk)}`
-    })
+    let salesPerClerk = store.clerks.map(clerk =>{return `$${totalSalesPerClerk(clerk)}`})
     createTable('salesPerClerkTable', store.clerks, salesPerClerk)
-    let clerkOfMonth = monthsInNumbers.map(month=>{
-        return bestClerkOfMonth(month, 2019)
-    })
+    let clerkOfMonth = monthsInNumbers.map(month=>{return bestClerkOfMonth(month, 2019)})
     createTable('clerkOfMonthTable', monthsInCapitalLetters, clerkOfMonth)
+}
+
+const onloadBranch = () =>{
+    let salesPerBranch = store.branches.map(branch =>{return `$${totalSalesPerBranch(branch)}`})
+    createTable('salesPerBranchTable', store.branches, salesPerBranch)
+    let branchOfMonth = monthsInNumbers.map(month =>{return bestBranchOfMonth(month, 2019)})
+    createTable('branchOfMonthTable', monthsInCapitalLetters, branchOfMonth)
 }
 
 //from an array of components returns the total price of the computer
@@ -148,6 +151,7 @@ const newTableColumn = (container, text) => {
     container.appendChild(slot)
 }
 
+//returns the best selling clerk of a specific month
 const bestClerkOfMonth = (month, year) =>{
     let salesPerMonth = store.soldComputers.filter(e=>{
         if(e.date.getMonth() === month && e.date.getFullYear() === year) return e
@@ -165,9 +169,39 @@ const bestClerkOfMonth = (month, year) =>{
     }
 }
 
+//returns the total sales of a clerk without time limit
 const totalSalesPerClerk = clerk =>{
     let sales = store.soldComputers.filter(e => {
         if(e.clerksName === clerk) return e
     })
     return total = sales.map(e=>computerPrice(e.components)).reduce((a,b)=>a+b)
+}
+
+//receives an array of objects and returns the sum of all computer components
+const totalSales = objectArray =>{
+    return total = objectArray.map(e=>computerPrice(e.components)).reduce((a,b)=>a+b)
+}
+
+//receives and branch and returns the total sales of that branch
+const totalSalesPerBranch = branch =>{
+    let sales = store.soldComputers.filter(e=>{
+        if(e.branch === branch) return e
+    })
+    return totalSales(sales)
+}
+
+const bestBranchOfMonth = (month, year) =>{
+    let salesPerMonth = store.soldComputers.filter(e=>{
+        if(e.date.getMonth() === month && e.date.getFullYear() === year) return e
+    })
+    let salesPerBranch = store.branches.map(e=>{
+        counter = 0
+        salesPerMonth.forEach(sale=>{
+            sale.branch === e ? counter += computerPrice(sale.components) : counter
+        })
+        return counter
+    })
+    if(salesPerMonth.length){
+        return bestBranch = store.branches[salesPerBranch.indexOf(Math.max(...salesPerBranch))]
+    }
 }
