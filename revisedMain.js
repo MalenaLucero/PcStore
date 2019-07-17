@@ -205,3 +205,4 @@ const bestBranchOfMonth = (month, year) =>{
         return bestBranch = store.branches[salesPerBranch.indexOf(Math.max(...salesPerBranch))]
     }
 }
+
