@@ -1,20 +1,50 @@
-$main-color: #C85350;
-$secondary-color: #31263E;
+$main-color: #28c3d4;
+$secondary-color: #248ea9;
+$third-color: #aee7e8;
 $text-color: #272B34;
 $background-color: #FCECC9;
 
 html{
-    background-color: $background-color;
+    box-sizing: border-box;
+    background-color: white;
     color: $text-color;
 }
 
+img{
+    width: 30px
+}
+
 a{
-    color: $main-color;
+    color: $secondary-color;
     text-decoration: none;
 }
 
 body{
     margin: 0;
+    .page-container{
+        .dashboard{
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            a{
+                width: 20%;
+                box-shadow: 1px 1px 8px rgba(226, 226, 226, 1);
+                display: flex;
+                flex-direction: column;
+                .inner-box{
+                    height: 100px;
+                    background-color: $third-color;
+                    padding: 20px;
+                    h3{
+                        text-align: right;
+                    }
+                }
+                p{
+                    text-align: center;
+                }
+            }
+        }
+    }
 }
 
 header{
