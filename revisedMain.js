@@ -40,6 +40,11 @@ var store = {
 }
 
 let componentsArray = store.prices.map(e=>e.component)
+let monthsInLetters = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+let monthsInCapitalLetters = monthsInLetters.map(e =>{
+  return e.charAt(0).toUpperCase() + e.slice(1)
+})
+let monthsInNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
 const onloadSales = () =>{
     createSoldComputersTable('soldComputersTable')
@@ -48,6 +53,14 @@ const onloadSales = () =>{
 const onloadComponents = () =>{
     let quantityPerComponent = componentsArray.map(component => quantitySoldPerComponent(component))
     createTable('componentsTable', componentsArray, quantityPerComponent)
+}
+
+const onloadClerks = () =>{
+    let clerkOfMonth = monthsInNumbers.map(month=>{
+        return bestClerkOfMonth(month, 2019)
+    })
+    console.log(clerkOfMonth)
+    createTable('clerkOfMonthTable', monthsInCapitalLetters, clerkOfMonth)
 }
 
 //from an array of components returns the total price of the computer
@@ -78,7 +91,8 @@ const createTable = (containerId, firstColumn, secondColumn) =>{
     let container = document.getElementById(containerId)
     container.innerHTML = ""
     firstColumn.forEach( (e, index) =>{
-        if (e !== '' && secondColumn[index] !== ''){
+        //if any of the columns has undefined values, they're not shown on screen
+        if (e !== undefined && secondColumn[index] !== undefined){
             let row = document.createElement('tr')
             let slot = document.createElement('td')
             slot.innerText = e
@@ -129,4 +143,21 @@ const newTableColumn = (container, text) => {
     let slot = document.createElement('td')
     slot.innerText = text
     container.appendChild(slot)
+}
+
+const bestClerkOfMonth = (month, year) =>{
+    let salesPerMonth = store.soldComputers.filter(e=>{
+        if(e.date.getMonth() === month && e.date.getFullYear() === year) return e
+    })
+    let salesPerClerk = store.clerks.map(clerk=>{
+        let counter = 0
+        salesPerMonth.forEach(({clerksName, components})=>{
+            clerksName === clerk ? counter += computerPrice(components) : counter
+        })
+        return counter
+    })
+    //it only returns if there were sales in the month. Otherwise, the value is undefined
+    if(salesPerMonth.length){
+        return bestClerk = store.clerks[salesPerClerk.indexOf(Math.max(...salesPerClerk))]
+    }
 }
