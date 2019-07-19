@@ -49,11 +49,21 @@ body .page-container .dashboard div a {
   text-align: center;
 }
 
-header {
-  background-color: #360158;
+header .languages {
+  text-align: center;
 }
-header a {
+header .languages a {
+  color: #3a7ee9;
+  margin: 0 10px;
+}
+header .companyName {
+  position: sticky;
   color: white;
+}
+header .companyName h1 {
+  background-color: #360158;
+  margin: 0;
+  padding: 20px 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

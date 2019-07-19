@@ -59,8 +59,20 @@ body{
 }
 
 header{
-    background-color: $third-color;
-    a{
+    .languages{
+        text-align:center;
+        a{
+          color: $secondary-color;
+          margin: 0 10px;  
+        }
+    }
+    .companyName{
+        position: sticky;
         color: $background-color;
+        h1{
+            background-color: $third-color;
+            margin: 0;
+            padding: 20px 0;
+        }
     }
 }
