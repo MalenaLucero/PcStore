@@ -20,14 +20,32 @@ a{
     text-decoration: none;
 }
 
+.button{
+    color: $contrastive-letter-color;
+    background-color: $secondary-color;
+    padding: 20px;
+}
+
 body{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     .page-container{
+        margin: 0 40px;
+        .newSale{
+            position: sticky;
+            bottom: 10px;
+            z-index: 999;
+            a{
+                float: right;
+                margin: 30px 0;
+            }
+        }
         .dashboard{
+            clear: both;
             display: flex;
-            justify-content: space-evenly;
+            justify-content: space-between;
             flex-wrap: wrap;
+            margin: 100px 0;
             div{
                 color: $contrastive-letter-color;
                 width: 20%;
@@ -63,16 +81,15 @@ header{
         text-align:center;
         a{
           color: $secondary-color;
-          margin: 0 10px;  
+          margin: 0 10px; 
         }
     }
-    .companyName{
-        position: sticky;
-        color: $background-color;
+    .companyName{ 
         h1{
             background-color: $third-color;
             margin: 0;
             padding: 20px 0;
+            color: $contrastive-letter-color;
         }
     }
 }

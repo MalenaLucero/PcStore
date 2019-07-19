@@ -13,14 +13,34 @@ a {
   text-decoration: none;
 }
 
+.button {
+  color: white;
+  background-color: #3a7ee9;
+  padding: 20px;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
+body .page-container {
+  margin: 0 40px;
+}
+body .page-container .newSale {
+  position: sticky;
+  bottom: 10px;
+  z-index: 999;
+}
+body .page-container .newSale a {
+  float: right;
+  margin: 30px 0;
+}
 body .page-container .dashboard {
+  clear: both;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
+  margin: 100px 0;
 }
 body .page-container .dashboard div {
   color: white;
@@ -56,14 +76,11 @@ header .languages a {
   color: #3a7ee9;
   margin: 0 10px;
 }
-header .companyName {
-  position: sticky;
-  color: white;
-}
 header .companyName h1 {
   background-color: #360158;
   margin: 0;
   padding: 20px 0;
+  color: white;
 }
 
 /*# sourceMappingURL=styles.css.map */
