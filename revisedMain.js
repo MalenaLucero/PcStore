@@ -46,6 +46,10 @@ let monthsInCapitalLetters = monthsInLetters.map(e =>{
 })
 let monthsInNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
+const onloadIndex = () =>{
+    createTable('salesPerMonth', monthsInCapitalLetters, salesPerMonth())
+}
+
 const onloadSales = () =>{
     createSoldComputersTable('soldComputersTable')
 }
@@ -98,7 +102,7 @@ const createTable = (containerId, firstColumn, secondColumn) =>{
     container.innerHTML = ""
     firstColumn.forEach( (e, index) =>{
         //if any of the columns has undefined values, they're not shown on screen
-        if (e !== undefined && secondColumn[index] !== undefined){
+        if (e !== undefined && e!== 0 && secondColumn[index] !== undefined && secondColumn[index] !== 0){
             let row = document.createElement('tr')
             let slot = document.createElement('td')
             slot.innerText = e
@@ -206,3 +210,22 @@ const bestBranchOfMonth = (month, year) =>{
     }
 }
 
+//REPORTE
+const render = () =>{
+    salesPerMonth()
+    salesPerBranch()
+    //bestSellingProduct()
+    //bestSellingClerk()
+}
+
+//returns the total sales per month as an array
+const salesPerMonth = () =>{
+    let totalSalesPerMonth = monthsInNumbers.map(month=>{
+        let sales = 0
+        store.soldComputers.forEach(computer =>{
+            computer.date.getMonth() === month ? sales += computerPrice(computer.components) : sales
+        })
+        if(sales) return `$${sales}`
+    })
+    return totalSalesPerMonth
+}
