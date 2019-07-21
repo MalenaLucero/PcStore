@@ -29,15 +29,21 @@
         <!--NEW SALE-->
         <div class="newSale">
             <a href="#" class="button newSaleButton" onclick="newSale()">Nueva compra</a>
-            <div class="newSaleModal hide">
+            <div class="newSaleModal hide" id="newSaleModal">
+                <a href="#" onclick="cancelNewSale()" class="cancelSale">Cancelar</a>
                 <select id="newClerk"></select>
                 <select id="newBranch"></select>
-                <select id="newComponent"></select>
-                <a href="#" onclick="addComponentToList()">Agregar componente</a>
-                <div id="showNewComponent"></div>
-                <a href="#" onclick="confirmSelection()">Confirmar</a>
-                <div id="newSaleContainer"></div>
-                <a href="#" onclick="confirmNewSale()">Confirmar compra</a>
+                <select id="newComponent" class="componentsSelect"></select>
+                <a href="#" onclick="addComponentToList()" class="addBtn">Agregar componente</a>
+                <ul id="showNewComponent" class="showNewComponent"></ul>
+                <a href="#" onclick="confirmSelection()" class="confirmBtn">Confirmar seleccion</a>
+                <div id="newSaleContainer" class="newSaleContainer"></div>
+                <div class="confirmNewSaleContainer hide" id="confirmNewSaleContainer">
+                    <a href="#" onclick="confirmNewSale()"  class="confirmBtn">Confirmar compra</a>
+                    <div class="messageConfirmNewSale" id="messageConfirmNewSale"></div>
+                </div>
+                
+                
             </div>
         </div>
         <!--DASHBOARD-->

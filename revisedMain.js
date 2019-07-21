@@ -46,6 +46,7 @@ let monthsInCapitalLetters = monthsInLetters.map(e =>{
 })
 let monthsInNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 let newComponentsArray = []
+let newSoldItem = {}
 
 const onloadIndex = () =>{
     showOnScreen('bestSellingClerk', maxSalesClerk())
@@ -53,7 +54,6 @@ const onloadIndex = () =>{
     let salesPerBranch = store.branches.map(branch =>{return `$${totalSalesPerBranch(branch)}`})
     showOnScreen('bestSellingProduct', maxSalesProduct())
     createTable('salesPerBranch', store.branches, salesPerBranch)
-    newSale()
 }
 
 const onloadSales = () =>{
@@ -271,13 +271,18 @@ const maxSalesClerk = () =>{
 
 //NEW SALE
 const newSale = () =>{
+    event.preventDefault()
     //newComponentsArray is the array that stores the components of the new sale
     newComponentsArray = []
+    newSoldItem = {}
     let showNewComponent = document.getElementById('showNewComponent')
     showNewComponent.innerHTML = ''
     setSelect('newClerk', 'una vendedora', store.clerks)
     setSelect('newBranch', 'una sucursal', store.branches)
     setSelect('newComponent', 'un componente', componentsArray)
+    showElement('newSaleModal')
+    cleanInnerHTML('newSaleContainer')
+    hideElement('confirmNewSaleContainer')
 }
 
 //creates a select
@@ -296,6 +301,7 @@ const setSelect = (idSelect, type, array) =>{
 
 //adds a component to newComponentsArray
 const addComponentToList = () =>{
+    event.preventDefault()
     let newComponent = document.getElementById('newComponent')
     newComponentsArray.push(newComponent.value)
     createComponentsList(newComponent.value, newComponentsArray.length-1)
@@ -320,6 +326,7 @@ const createComponentsList = (text, btnId) =>{
     let deleteBtn = document.createElement('img')
     deleteBtn.src = 'images/Icon-Delete.png'
     deleteBtn.id = btnId
+    deleteBtn.classList.add('deleteBtn')
     deleteBtn.onclick = function(){ deleteItem(this) }
     componentLi.appendChild(deleteBtn)
     componentUl.appendChild(componentLi)
@@ -333,3 +340,57 @@ const deleteItem = btn => {
         createComponentsList(e, index)
     })
 }
+
+//sends the new information to the object newSoldItem
+//shows on screen the options selected to confirm there are no mistakes
+const confirmSelection = () =>{
+    event.preventDefault()
+    let newClerk = document.getElementById('newClerk')
+    let newBranch = document.getElementById('newBranch')
+    let date = new Date()
+    newSoldItem = {
+        date: date,
+        clerksName: newClerk.value,
+        components: newComponentsArray,
+        branch: newBranch.value
+    }
+    //prints on screen
+    let newSaleContainer = document.getElementById('newSaleContainer')
+    newSaleContainer.innerHTML = ''
+    showOnScreen('newSaleContainer', `Vendedora: ${newSoldItem.clerksName}`)
+    showOnScreen('newSaleContainer', `Sucursal: ${newSoldItem.branch}`)
+    showOnScreen('newSaleContainer', `Componentes: ${newSoldItem.components}`)
+    showElement('confirmNewSaleContainer')
+}
+
+//pushes newSoldItem to store.soldComputers
+const confirmNewSale = () =>{
+    event.preventDefault()
+    store.soldComputers.unshift(newSoldItem)
+    console.log(store.soldComputers)
+    showOnScreen('messageConfirmNewSale', "Compra realizada con exito")
+}
+
+//hides from screen the new sale window
+const cancelNewSale = () =>{
+    hideElement('newSaleModal')
+}
+
+//shows an element on screen by changing the class .hide for .show
+const showElement = (elementId) =>{
+    let element = document.getElementById(elementId)
+    element.classList.replace('hide','show')
+}
+  
+//hides an element by changing the class .show for .hide
+const hideElement = (elementId) =>{
+    let element = document.getElementById(elementId)
+    element.classList.replace('show','hide')
+}
+
+//cleans the inner HTML of a DOM element
+const cleanInnerHTML = (containerId) =>{
+    let element = document.getElementById(containerId)
+    element.innerHTML = ''
+}
+

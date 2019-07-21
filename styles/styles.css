@@ -166,10 +166,61 @@ table.indexTable {
 
 .newSaleModal {
   margin: 0 auto;
-  max-width: 250px;
+  max-width: 300px;
   clear: both;
   display: flex;
   flex-direction: column;
+  border: 1px solid #6b119d;
+  padding: 20px;
+  background-color: rgba(107, 17, 157, 0.2);
+}
+.newSaleModal select {
+  margin-top: 10px;
+}
+.newSaleModal a {
+  display: block;
+}
+.newSaleModal select {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #6b119d;
+}
+.newSaleModal .deleteBtn {
+  width: 15px;
+}
+.newSaleModal a.confirmBtn {
+  background-color: #3a7ee9;
+  color: white;
+  padding: 10px;
+  margin: 20px 0;
+  text-align: center;
+}
+.newSaleModal a.cancelSale {
+  text-align: right;
+  font-size: 13px;
+  margin-bottom: 20px;
+  background-color: #6b119d;
+  color: white;
+  padding: 10px;
+  float: right;
+}
+.newSaleModal a.addBtn {
+  text-align: center;
+  margin: 20px;
+}
+.newSaleModal ul.showNewComponent li, .newSaleModal .newSaleContainer p, .newSaleModal .messageConfirmNewSale p {
+  background-color: white;
+  padding: 10px;
+  margin: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 /*# sourceMappingURL=styles.css.map */
