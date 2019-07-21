@@ -1,5 +1,7 @@
 $main-color: #6b119d;
+$main-color-transparent: rgba(107, 17, 157, 0.2);
 $secondary-color: #3a7ee9;
+$secondary-color-transparent: rgba(58, 126, 233, 0.2);
 $third-color: #360158;
 $text-color: #272B34;
 $background-color: white;
@@ -36,19 +38,31 @@ a{
     clear: both;
 }
 
+h4{
+    margin: 50px 0 20px;
+}
+
 body{
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
+    margin: 0 0 50px;
     .page-container{
         margin: 0 40px;
+        .returnToHome{
+            display: block;
+            margin-top: 30px;
+        }
         .newSale{
-            position: sticky;
-            bottom: 10px;
-            z-index: 999;
             a{
                 float: right;
                 margin: 30px 0;
             }
+        }
+        h2{
+            text-align: center;
+            background-color: $third-color;
+            color: $contrastive-letter-color;
+            padding: 20px;
+            margin-bottom: 50px;
         }
         .dashboard{
             clear: both;
@@ -65,7 +79,8 @@ body{
                 border-radius: 20px;
                 position: relative;
                 h3{
-                    margin: 20px 20px;
+                    margin: 50px 0px;
+                    text-align: center;
                 }
                 p{
                     margin: 20px 20px;
@@ -87,14 +102,42 @@ body{
     .report{
         h2{
             text-align: center;
+            background-color: $secondary-color;
+            color: $contrastive-letter-color;
+            padding: 20px;
         }
         .firstReport{
             display: flex;
             justify-content: space-evenly;
+            flex-direction: column;
+            div{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         }
         .secondReport{
             display: flex;
             justify-content: space-evenly;
+            flex-direction: column;
+            div{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        p{
+            color: $main-color;
+            font-weight: bold;
+            margin: 0px;
+        }
+        .reportBox{
+            h3{
+                margin: 0 0 10px;
+            }
+            background-color: $secondary-color-transparent;
+            padding: 20px;
+            margin: 20px 0;
         }
     }
 }
@@ -117,7 +160,7 @@ header{
     }
 }
 
-table {
+table{
     border-collapse: collapse;
     width: 100%;
     th{
@@ -126,8 +169,18 @@ table {
         padding: 20px 0;
     }
     td{
-        border-bottom: 1px solid $secondary-color;
+        
         padding: 10px 0;
         text-align: center;
     }
+    tr{
+        &:nth-child(odd){
+            background-color: $secondary-color-transparent;
+        }
+    }
+}
+
+table.indexTable{
+    max-width: 300px;
+    
 }
