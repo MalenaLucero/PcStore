@@ -45,6 +45,7 @@ let monthsInCapitalLetters = monthsInLetters.map(e =>{
   return e.charAt(0).toUpperCase() + e.slice(1)
 })
 let monthsInNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+let newComponentsArray = []
 
 const onloadIndex = () =>{
     showOnScreen('bestSellingClerk', maxSalesClerk())
@@ -52,6 +53,7 @@ const onloadIndex = () =>{
     let salesPerBranch = store.branches.map(branch =>{return `$${totalSalesPerBranch(branch)}`})
     showOnScreen('bestSellingProduct', maxSalesProduct())
     createTable('salesPerBranch', store.branches, salesPerBranch)
+    newSale()
 }
 
 const onloadSales = () =>{
@@ -266,3 +268,68 @@ const maxSalesClerk = () =>{
     })
     return maxClerk
   }
+
+//NEW SALE
+const newSale = () =>{
+    //newComponentsArray is the array that stores the components of the new sale
+    newComponentsArray = []
+    let showNewComponent = document.getElementById('showNewComponent')
+    showNewComponent.innerHTML = ''
+    setSelect('newClerk', 'una vendedora', store.clerks)
+    setSelect('newBranch', 'una sucursal', store.branches)
+    setSelect('newComponent', 'un componente', componentsArray)
+}
+
+//creates a select
+const setSelect = (idSelect, type, array) =>{
+    let select = document.getElementById(idSelect)
+    select.innerHTML = ''
+    let firstOption = document.createElement('option')
+    firstOption.innerText = `Elija ${type}`
+    select.appendChild(firstOption)
+    array.forEach(e=>{
+      let componentsOption = document.createElement('option')
+      componentsOption.innerText = e
+      select.appendChild(componentsOption)
+    })
+  }
+
+//adds a component to newComponentsArray
+const addComponentToList = () =>{
+    let newComponent = document.getElementById('newComponent')
+    newComponentsArray.push(newComponent.value)
+    createComponentsList(newComponent.value, newComponentsArray.length-1)
+    
+    /*let chosenComponentError = document.getElementById('chosenComponentError')
+    chosenComponentError.innerHTML = ''
+    let sellerOrBranchError = document.getElementById('sellerOrBranchError')
+    sellerOrBranchError.innerHTML = ''
+    let newComponent = document.getElementById('newComponent')
+    if(newComponent.value === 'Elija un componente'){
+        showOnScreen('chosenComponentError', 'Elija un componente válido')
+    }else{
+        newComponentsArray.push(newComponent.value)
+        createComponentsList(newComponent.value, newComponentsArray.length-1)
+    }*/
+}
+
+const createComponentsList = (text, btnId) =>{
+    let componentUl = document.getElementById('showNewComponent')
+    let componentLi = document.createElement('li')
+    componentLi.innerText = text
+    let deleteBtn = document.createElement('img')
+    deleteBtn.src = 'images/Icon-Delete.png'
+    deleteBtn.id = btnId
+    deleteBtn.onclick = function(){ deleteItem(this) }
+    componentLi.appendChild(deleteBtn)
+    componentUl.appendChild(componentLi)
+}
+
+const deleteItem = btn => {
+    newComponentsArray.splice(btn.id, 1)
+    let componentUl = document.getElementById('showNewComponent')
+    componentUl.innerHTML = ''
+    newComponentsArray.forEach((e, index)=>{
+        createComponentsList(e, index)
+    })
+}

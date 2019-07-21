@@ -14,11 +14,11 @@
 
 <body onload="onloadIndex()">
     <header class="header"> 
-        <div class="languages">
+        <!--<div class="languages">
             <a href="#">Español</a>
             <a href="#">English</a>
             <a href="#">日本語</a>
-        </div>
+        </div>-->
         <div class="companyName">
             <a href="index.html">
                 <h1>Pc store</h1>
@@ -28,7 +28,17 @@
     <div class="page-container">
         <!--NEW SALE-->
         <div class="newSale">
-            <a href="#" class="button">Nueva compra</a>
+            <a href="#" class="button newSaleButton" onclick="newSale()">Nueva compra</a>
+            <div class="newSaleModal hide">
+                <select id="newClerk"></select>
+                <select id="newBranch"></select>
+                <select id="newComponent"></select>
+                <a href="#" onclick="addComponentToList()">Agregar componente</a>
+                <div id="showNewComponent"></div>
+                <a href="#" onclick="confirmSelection()">Confirmar</a>
+                <div id="newSaleContainer"></div>
+                <a href="#" onclick="confirmNewSale()">Confirmar compra</a>
+            </div>
         </div>
         <!--DASHBOARD-->
         <div class="dashboard">
