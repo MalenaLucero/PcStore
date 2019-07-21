@@ -281,8 +281,10 @@ const newSale = () =>{
     setSelect('newBranch', 'una sucursal', store.branches)
     setSelect('newComponent', 'un componente', componentsArray)
     showElement('newSaleModal')
+    //cleaners
     cleanInnerHTML('newSaleContainer')
     hideElement('confirmNewSaleContainer')
+    cleanInnerHTML('messageConfirmNewSale')
 }
 
 //creates a select
@@ -305,18 +307,6 @@ const addComponentToList = () =>{
     let newComponent = document.getElementById('newComponent')
     newComponentsArray.push(newComponent.value)
     createComponentsList(newComponent.value, newComponentsArray.length-1)
-    
-    /*let chosenComponentError = document.getElementById('chosenComponentError')
-    chosenComponentError.innerHTML = ''
-    let sellerOrBranchError = document.getElementById('sellerOrBranchError')
-    sellerOrBranchError.innerHTML = ''
-    let newComponent = document.getElementById('newComponent')
-    if(newComponent.value === 'Elija un componente'){
-        showOnScreen('chosenComponentError', 'Elija un componente válido')
-    }else{
-        newComponentsArray.push(newComponent.value)
-        createComponentsList(newComponent.value, newComponentsArray.length-1)
-    }*/
 }
 
 const createComponentsList = (text, btnId) =>{
