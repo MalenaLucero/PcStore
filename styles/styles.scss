@@ -11,6 +11,12 @@ html{
     color: $text-color;
 }
 
+ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
 img{
     width: 30px
 }
@@ -24,6 +30,10 @@ a{
     color: $contrastive-letter-color;
     background-color: $secondary-color;
     padding: 20px;
+}
+
+.page-header{
+    clear: both;
 }
 
 body{
@@ -74,6 +84,19 @@ body{
             }
         }
     }
+    .report{
+        h2{
+            text-align: center;
+        }
+        .firstReport{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .secondReport{
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
 }
 
 header{
@@ -91,5 +114,20 @@ header{
             padding: 20px 0;
             color: $contrastive-letter-color;
         }
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    th{
+        background-color: $main-color;
+        color: $contrastive-letter-color;
+        padding: 20px 0;
+    }
+    td{
+        border-bottom: 1px solid $secondary-color;
+        padding: 10px 0;
+        text-align: center;
     }
 }
