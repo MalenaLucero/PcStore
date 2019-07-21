@@ -47,9 +47,11 @@ body{
     margin: 0 0 50px;
     .page-container{
         margin: 0 40px;
-        .returnToHome{
+        .returnHome{
             display: block;
             margin-top: 30px;
+            clear: both;
+            color: $secondary-color;
         }
         .newSale{
             a.newSaleButton{

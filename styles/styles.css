@@ -40,9 +40,11 @@ body {
 body .page-container {
   margin: 0 40px;
 }
-body .page-container .returnToHome {
+body .page-container .returnHome {
   display: block;
   margin-top: 30px;
+  clear: both;
+  color: #3a7ee9;
 }
 body .page-container .newSale a.newSaleButton {
   float: right;
