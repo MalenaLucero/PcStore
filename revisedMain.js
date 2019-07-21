@@ -47,7 +47,11 @@ let monthsInCapitalLetters = monthsInLetters.map(e =>{
 let monthsInNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
 const onloadIndex = () =>{
+    showOnScreen('bestSellingClerk', maxSalesClerk())
     createTable('salesPerMonth', monthsInCapitalLetters, salesPerMonth())
+    let salesPerBranch = store.branches.map(branch =>{return `$${totalSalesPerBranch(branch)}`})
+    showOnScreen('bestSellingProduct', maxSalesProduct())
+    createTable('salesPerBranch', store.branches, salesPerBranch)
 }
 
 const onloadSales = () =>{
@@ -155,6 +159,14 @@ const newTableColumn = (container, text) => {
     container.appendChild(slot)
 }
 
+//prints on screen inside a <p> tag
+const showOnScreen = (containerId, data) =>{
+    let father = document.getElementById(containerId)
+    let child = document.createElement('p')
+    child.innerText = data
+    father.appendChild(child)
+  }
+
 //returns the best selling clerk of a specific month
 const bestClerkOfMonth = (month, year) =>{
     let salesPerMonth = store.soldComputers.filter(e=>{
@@ -210,14 +222,6 @@ const bestBranchOfMonth = (month, year) =>{
     }
 }
 
-//REPORTE
-const render = () =>{
-    salesPerMonth()
-    salesPerBranch()
-    //bestSellingProduct()
-    //bestSellingClerk()
-}
-
 //returns the total sales per month as an array
 const salesPerMonth = () =>{
     let totalSalesPerMonth = monthsInNumbers.map(month=>{
@@ -229,3 +233,36 @@ const salesPerMonth = () =>{
     })
     return totalSalesPerMonth
 }
+
+//returns the best-selling product
+const maxSalesProduct = () =>{
+    let totalSales = 0
+    let maxSales = 0
+    let maxComponent = ''
+    store.prices.forEach(e=>{
+      totalSales = quantitySoldPerComponent(e.component)
+      if(totalSales>maxSales){
+        maxSales = totalSales
+        maxComponent = e.component
+      }
+    })
+    return maxComponent
+}
+
+//returns the clerk that sold more in terms of money
+const maxSalesClerk = () =>{
+    let totalSold = 0
+    let maxTotalSold = 0
+    let maxClerk = ''
+    store.clerks.forEach(employee =>{
+      totalSold = 0
+      store.soldComputers.forEach(e=>{
+        e.clerksName === employee ? totalSold += computerPrice(e.components) : totalSold
+      })
+      if(totalSold > maxTotalSold){
+        maxTotalSold = totalSold
+        maxClerk = employee
+      }
+    })
+    return maxClerk
+  }
