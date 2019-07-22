@@ -250,12 +250,16 @@ table.indexTable{
     }
     a.cancelSale{
         text-align: right;
-        font-size: 13px;
+        font-size: 20px;
         margin-bottom: 20px;
-        background-color: $main-color;
-        color: $contrastive-letter-color;
-        padding: 10px;
+        color: $main-color;
+        padding: 8px 10px;
         float: right;
+        &:hover{
+           background-color: $main-color; 
+           color: $contrastive-letter-color;
+           transition: all 0.5s;
+        }
     }
     a.addBtn{
         text-align: center;
