@@ -35,11 +35,12 @@ a{
     background-color: $secondary-color;
     padding: 20px;
     border: 1px solid white;
-    transition: all 0.5s;
+    
     &:hover{
         background-color: $secondary-color-transparent;
         color: $third-color;
         border: 1px solid $third-color;
+        transition: all 0.5s;
     }
 }
 
@@ -117,10 +118,10 @@ body{
                     transform: translate(-50%, -50%);
                     border-radius: 20px;
                     padding: 8px;
-                    transition: all 0.5s;
                     &:hover{
                         background-color: $third-color;
                         color: $contrastive-letter-color;
+                        transition: all 0.5s;
                     }
                 }
             }
