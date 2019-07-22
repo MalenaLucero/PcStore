@@ -350,6 +350,7 @@ const confirmSelection = () =>{
     showOnScreen('newSaleContainer', `Vendedora: ${newSoldItem.clerksName}`)
     showOnScreen('newSaleContainer', `Sucursal: ${newSoldItem.branch}`)
     showOnScreen('newSaleContainer', `Componentes: ${newSoldItem.components}`)
+    showOnScreen('newSaleContainer', `Total: $${computerPrice(newSoldItem.components)}`)
     showElement('confirmNewSaleContainer')
 }
 

@@ -64,6 +64,11 @@ body .page-container .dashboard {
   flex-wrap: wrap;
   margin: 100px 0;
 }
+@media (max-width: 750px) {
+  body .page-container .dashboard {
+    flex-direction: column;
+  }
+}
 body .page-container .dashboard div {
   color: white;
   width: 20%;
@@ -72,13 +77,23 @@ body .page-container .dashboard div {
   background: linear-gradient(167deg, #360158 0%, #6b119d 52%, #3a7ee9 100%);
   border-radius: 20px;
   position: relative;
+  text-align: center;
+}
+@media (max-width: 750px) {
+  body .page-container .dashboard div {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 body .page-container .dashboard div h3 {
-  margin: 50px 0px;
-  text-align: center;
+  margin: 20px 0 40px;
 }
 body .page-container .dashboard div p {
   margin: 20px 20px;
+}
+body .page-container .dashboard div i {
+  font-size: 50px;
+  color: #3a7ee9;
 }
 body .page-container .dashboard div a {
   background-color: white;
@@ -89,7 +104,6 @@ body .page-container .dashboard div a {
   transform: translate(-50%, -50%);
   border-radius: 20px;
   padding: 8px;
-  text-align: center;
 }
 body .report h2 {
   text-align: center;
@@ -125,7 +139,7 @@ body .report p {
 body .report .reportBox {
   background-color: rgba(58, 126, 233, 0.2);
   padding: 20px;
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 body .report .reportBox h3 {
   margin: 0 0 10px;

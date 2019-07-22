@@ -6,6 +6,8 @@ $third-color: #360158;
 $text-color: #272B34;
 $background-color: white;
 $contrastive-letter-color: white;
+//screen sizes
+$medium-break: 750px;
 
 html{
     box-sizing: border-box;
@@ -72,6 +74,9 @@ body{
             justify-content: space-between;
             flex-wrap: wrap;
             margin: 100px 0;
+            @media (max-width: $medium-break){
+                flex-direction: column;
+            }
             div{
                 color: $contrastive-letter-color;
                 width: 20%;
@@ -80,12 +85,21 @@ body{
                 background: linear-gradient(167deg, rgba(54,1,88,1) 0%, rgba(107,17,157,1) 52%, rgba(58,126,233,1) 100%);
                 border-radius: 20px;
                 position: relative;
+                text-align: center;
+                @media (max-width: $medium-break){
+                    width: 100%;
+                    margin-bottom: 20px;
+                    
+                }
                 h3{
-                    margin: 50px 0px;
-                    text-align: center;
+                    margin: 20px 0 40px;
                 }
                 p{
                     margin: 20px 20px;
+                }
+                i{
+                    font-size: 50px;
+                    color: $secondary-color;
                 }
                 a{
                     background-color: white;
@@ -96,7 +110,6 @@ body{
                     transform: translate(-50%, -50%);
                     border-radius: 20px;
                     padding: 8px;
-                    text-align: center;
                 }
             }
         }
@@ -139,7 +152,7 @@ body{
             }
             background-color: $secondary-color-transparent;
             padding: 20px;
-            margin: 20px 0;
+            margin-bottom: 20px;
         }
     }
 }
