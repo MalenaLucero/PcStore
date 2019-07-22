@@ -48,6 +48,14 @@ let monthsInNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 let newComponentsArray = []
 let newSoldItem = {}
 
+//checks data en local storage
+const checkExistingData = () => {
+    let storedData = window.localStorage.getItem('newSale')
+    store = storedData ? JSON.parse(storedData) : store
+}
+
+checkExistingData()
+
 const onloadIndex = () =>{
     showOnScreen('bestSellingClerk', maxSalesClerk())
     createTable('salesPerMonth', monthsInCapitalLetters, salesPerMonth())
@@ -130,9 +138,9 @@ const createSoldComputersTable = containerId => {
         Object.keys(computer).forEach( key => {
             let slot = document.createElement('td')
             switch (key){
-                case 'date':
+                /*case 'date':
                     slot.innerText = `${computer[key].getDate()}/${computer[key].getMonth() + 1}/${computer[key].getFullYear()}`
-                    break;
+                    break;*/
                 case 'components':
                     let ul = document.createElement('ul')
                     computer[key].forEach(component => {
@@ -271,7 +279,6 @@ const maxSalesClerk = () =>{
 
 //NEW SALE
 const newSale = () =>{
-    event.preventDefault()
     //newComponentsArray is the array that stores the components of the new sale
     newComponentsArray = []
     newSoldItem = {}
@@ -285,6 +292,7 @@ const newSale = () =>{
     cleanInnerHTML('newSaleContainer')
     hideElement('confirmNewSaleContainer')
     cleanInnerHTML('messageConfirmNewSale')
+    hideElement('newSaleRedirect')
 }
 
 //creates a select
@@ -365,8 +373,10 @@ const confirmSelection = () =>{
 const confirmNewSale = () =>{
     event.preventDefault()
     store.soldComputers.unshift(newSoldItem)
+    saveToStore()
     console.log(store.soldComputers)
     showOnScreen('messageConfirmNewSale', "Compra realizada con exito")
+    showElement('newSaleRedirect')
 }
 
 //hides from screen the new sale window
@@ -390,5 +400,11 @@ const hideElement = (elementId) =>{
 const cleanInnerHTML = (containerId) =>{
     let element = document.getElementById(containerId)
     element.innerHTML = ''
+}
+
+//local storage
+const saveToStore = () => {
+    let parsedData = JSON.stringify(store)
+    window.localStorage.setItem('newSale', parsedData)
 }
 

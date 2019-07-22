@@ -27,7 +27,7 @@
         <div class="newSale">
             <a href="#" class="button newSaleButton" onclick="newSale()">Nueva compra</a>
             <div class="newSaleModal hide" id="newSaleModal">
-                <a href="#" onclick="cancelNewSale()" class="cancelSale">Cancelar</a>
+                <a href="#" onclick="cancelNewSale()" class="cancelSale"><i class="fas fa-times"></i></a>
                 <select id="newClerk"></select>
                 <select id="newBranch"></select>
                 <select id="newComponent" class="componentsSelect"></select>
@@ -38,6 +38,11 @@
                 <div class="confirmNewSaleContainer hide" id="confirmNewSaleContainer">
                     <a href="#" onclick="confirmNewSale()"  class="confirmBtn">Confirmar compra</a>
                     <div class="messageConfirmNewSale" id="messageConfirmNewSale"></div>
+                    <div class="newSaleRedirect hide" id="newSaleRedirect">
+                        <a href="ventas.html">Ir a ventas</a>
+                        <a href="#" onclick="newSale()">Nueva compra</a>
+                        <a href="#" onclick="cancelNewSale()">Cerrar</a>
+                    </div>
                 </div>
             </div>
         </div>
