@@ -305,8 +305,10 @@ const setSelect = (idSelect, type, array) =>{
 const addComponentToList = () =>{
     event.preventDefault()
     let newComponent = document.getElementById('newComponent')
-    newComponentsArray.push(newComponent.value)
-    createComponentsList(newComponent.value, newComponentsArray.length-1)
+    if(newComponent.value !== 'Elija un componente'){
+        newComponentsArray.push(newComponent.value)
+        createComponentsList(newComponent.value, newComponentsArray.length-1)
+    }
 }
 
 const createComponentsList = (text, btnId) =>{
@@ -344,14 +346,19 @@ const confirmSelection = () =>{
         components: newComponentsArray,
         branch: newBranch.value
     }
-    //prints on screen
     let newSaleContainer = document.getElementById('newSaleContainer')
     newSaleContainer.innerHTML = ''
-    showOnScreen('newSaleContainer', `Vendedora: ${newSoldItem.clerksName}`)
-    showOnScreen('newSaleContainer', `Sucursal: ${newSoldItem.branch}`)
-    showOnScreen('newSaleContainer', `Componentes: ${newSoldItem.components}`)
-    showOnScreen('newSaleContainer', `Total: $${computerPrice(newSoldItem.components)}`)
-    showElement('confirmNewSaleContainer')
+    //verifies if the data is correct and prints on screen
+    if(newSoldItem.clerksName !== 'Elija una vendedora' && newSoldItem.branch !== 'Elija una sucursal' && newSoldItem.components.length !== 0){
+        showOnScreen('newSaleContainer', `Vendedora: ${newSoldItem.clerksName}`)
+        showOnScreen('newSaleContainer', `Sucursal: ${newSoldItem.branch}`)
+        showOnScreen('newSaleContainer', `Componentes: ${newSoldItem.components}`)
+        showOnScreen('newSaleContainer', `Total: $${computerPrice(newSoldItem.components)}`)
+        showElement('confirmNewSaleContainer')
+    }else{
+        showOnScreen('newSaleContainer', 'Verificar los datos ingresados')
+    }
+    
 }
 
 //pushes newSoldItem to store.soldComputers
