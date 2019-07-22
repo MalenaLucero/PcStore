@@ -23,6 +23,13 @@ a {
   color: white;
   background-color: #3a7ee9;
   padding: 20px;
+  border: 1px solid white;
+  transition: all 0.5s;
+}
+.button:hover {
+  background-color: rgba(58, 126, 233, 0.2);
+  color: #360158;
+  border: 1px solid #360158;
 }
 
 .page-header {
@@ -95,7 +102,7 @@ body .page-container .dashboard div i {
   font-size: 50px;
   color: #3a7ee9;
 }
-body .page-container .dashboard div a {
+body .page-container .dashboard div a.seeMore {
   background-color: white;
   width: 60%;
   position: absolute;
@@ -104,6 +111,11 @@ body .page-container .dashboard div a {
   transform: translate(-50%, -50%);
   border-radius: 20px;
   padding: 8px;
+  transition: all 0.5s;
+}
+body .page-container .dashboard div a.seeMore:hover {
+  background-color: #360158;
+  color: white;
 }
 body .report h2 {
   text-align: center;
