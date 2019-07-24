@@ -138,9 +138,9 @@ const createSoldComputersTable = containerId => {
         Object.keys(computer).forEach( key => {
             let slot = document.createElement('td')
             switch (key){
-                /*case 'date':
-                    slot.innerText = `${computer[key].getDate()}/${computer[key].getMonth() + 1}/${computer[key].getFullYear()}`
-                    break;*/
+                case 'date':
+                    slot.innerText = `${new Date(computer[key]).getDate()}/${new Date(computer[key]).getMonth() + 1}/${new Date(computer[key]).getFullYear()}`
+                    break;
                 case 'components':
                     let ul = document.createElement('ul')
                     computer[key].forEach(component => {
@@ -156,7 +156,6 @@ const createSoldComputersTable = containerId => {
             }
         row.appendChild(slot)
       })
-      console.log(computer['components'])
       //adds a column that is not part of the original array
       newTableColumn(row, `$${computerPrice(computer['components'])}`)
       container.appendChild(row)
@@ -180,7 +179,7 @@ const showOnScreen = (containerId, data) =>{
 //returns the best selling clerk of a specific month
 const bestClerkOfMonth = (month, year) =>{
     let salesPerMonth = store.soldComputers.filter(e=>{
-        if(e.date.getMonth() === month && e.date.getFullYear() === year) return e
+        if(new Date(e.date).getMonth() === month && new Date(e.date).getFullYear() === year) return e
     })
     let salesPerClerk = store.clerks.map(clerk=>{
         let counter = 0
@@ -218,7 +217,7 @@ const totalSalesPerBranch = branch =>{
 
 const bestBranchOfMonth = (month, year) =>{
     let salesPerMonth = store.soldComputers.filter(e=>{
-        if(e.date.getMonth() === month && e.date.getFullYear() === year) return e
+        if(new Date(e.date).getMonth() === month && new Date(e.date).getFullYear() === year) return e
     })
     let salesPerBranch = store.branches.map(e=>{
         counter = 0
@@ -237,7 +236,7 @@ const salesPerMonth = () =>{
     let totalSalesPerMonth = monthsInNumbers.map(month=>{
         let sales = 0
         store.soldComputers.forEach(computer =>{
-            computer.date.getMonth() === month ? sales += computerPrice(computer.components) : sales
+            new Date(computer.date).getMonth() === month ? sales += computerPrice(computer.components) : sales
         })
         if(sales) return `$${sales}`
     })
@@ -407,4 +406,3 @@ const saveToStore = () => {
     let parsedData = JSON.stringify(store)
     window.localStorage.setItem('newSale', parsedData)
 }
-
